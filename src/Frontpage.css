@@ -1,0 +1,73 @@
+#root {
+  max-width: 1280px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.play-buttons {
+  padding: 2em;
+}
+
+.play-buttons > button {
+  margin: 1em;
+}
+
+.helper-text {
+  font-size: small;
+  color: #888;
+}
+
+.game-container {
+  filter: drop-shadow(0 0 2em #d947fdaa);
+}
+.game-logo {
+  font-size: 10rem;
+  font-weight: bold;
+  cursor: default;
+  /* will-change: filter;
+  transition: filter 300ms; */
+}
+
+.game-title {
+  font-size: 3.2em;
+  line-height: 1.1;
+  position: relative;
+}
+
+.hiragana-english:hover,
+.katakana-english:hover {
+  text-decoration: line-through;
+}
+.hiragana-japanese,
+.katakana-japanese {
+  display: none;
+}
+.hiragana-english:hover .hiragana-japanese {
+  display: unset;
+  font-size: 2.5rem;
+  position: absolute;
+  bottom: 6rem;
+  left: 2rem;
+}
+.katakana-english:hover .katakana-japanese {
+  display: unset;
+  font-size: 2.5rem;
+  position: absolute;
+  bottom: 6rem;
+  left: 19rem;
+}
+
+/* @keyframes logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .game-logo {
+    animation: logo-spin infinite 20s linear;
+  }
+} */
