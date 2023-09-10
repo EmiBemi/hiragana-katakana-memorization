@@ -1,9 +1,15 @@
+import { BackNavigation } from "../components/BackNavigation";
 import { Game } from "../components/Game";
 import { shuffle } from "../utils/shuffle";
 
 export const Katakana = () => {
   const shuffleKatakana = shuffle(katakanaArray);
-  return <Game characters={shuffleKatakana} />;
+  return (
+    <>
+      <BackNavigation />
+      <Game characters={shuffleKatakana} />;
+    </>
+  );
 };
 
 const katakanaArray = [

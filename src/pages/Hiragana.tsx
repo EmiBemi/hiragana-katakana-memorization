@@ -1,10 +1,15 @@
-import "./Hiragana.css";
 import { shuffle } from "../utils/shuffle";
 import { Game } from "../components/Game";
+import { BackNavigation } from "../components/BackNavigation";
 
 export const Hiragana = () => {
   const shuffleHiragana = shuffle(hiraganaArray);
-  return <Game characters={shuffleHiragana} />;
+  return (
+    <>
+      <BackNavigation />
+      <Game characters={shuffleHiragana} />
+    </>
+  );
 };
 
 const hiraganaArray = [
