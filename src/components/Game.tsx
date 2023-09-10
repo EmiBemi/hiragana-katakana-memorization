@@ -3,10 +3,9 @@ import "./Game.css";
 
 /**
  * TODO:
- * - Back navigation
  * - Speedrun mode
  * - End screen
- * - What to do when the user is stuck?
+ * - Score should not count incorrect characters
  * */
 
 interface GameProps {
@@ -17,6 +16,9 @@ export const Game = ({ characters }: GameProps) => {
   const [input, setInput] = React.useState("");
   const [currentIndex, setCurrentIndex] = React.useState(0);
   const [error, setError] = React.useState(false);
+  const [score, setScore] = React.useState(0);
+
+  const isDone = characters.length === currentIndex;
 
   return (
     <form
@@ -33,18 +35,28 @@ export const Game = ({ characters }: GameProps) => {
         setCurrentIndex((c) => c + 1);
         setInput("");
         setError(false);
+        setScore((c) => c + 1);
       }}
     >
       <div className="character__container">
+        {error && (
+          <span className="character__answer">
+            {characters[currentIndex]?.value}
+          </span>
+        )}
+
         <div
-          className={
-            !error
-              ? "character__label"
-              : `character__label character__label--error`
-          }
+          className={`character__label${
+            error ? " character__label--error" : ""
+          }${isDone ? " character__label--done" : ""}`}
         >
-          {characters[currentIndex].label}
+          {!isDone ? characters[currentIndex]?.label : "🏅"}
         </div>
+
+        <div className="character__score">
+          Progress: {`${score}/${characters.length}`}
+        </div>
+
         <div className="character__actions">
           <input
             className="character__input"
