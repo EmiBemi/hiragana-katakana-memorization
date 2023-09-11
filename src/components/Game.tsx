@@ -4,8 +4,7 @@ import "./Game.css";
 /**
  * TODO:
  * - Speedrun mode
- * - End screen
- * - Score should not count incorrect characters
+ * - Disable diagraphs
  * */
 
 interface GameProps {
@@ -16,7 +15,10 @@ export const Game = ({ characters }: GameProps) => {
   const [input, setInput] = React.useState("");
   const [currentIndex, setCurrentIndex] = React.useState(0);
   const [error, setError] = React.useState(false);
-  const [score, setScore] = React.useState(0);
+
+  const [progress, setProgress] = React.useState(0);
+  const [correct, setCorrect] = React.useState(0);
+  const [incorrect, setIncorrect] = React.useState(0);
 
   const isDone = characters.length === currentIndex;
 
@@ -30,12 +32,14 @@ export const Game = ({ characters }: GameProps) => {
           setTimeout(() => {
             setError(false);
           }, 500);
+          setIncorrect((c) => c + 1);
           return;
         }
         setCurrentIndex((c) => c + 1);
         setInput("");
         setError(false);
-        setScore((c) => c + 1);
+        setProgress((c) => c + 1);
+        setCorrect((c) => c + 1);
       }}
     >
       <div className="character__container">
@@ -54,7 +58,10 @@ export const Game = ({ characters }: GameProps) => {
         </div>
 
         <div className="character__score">
-          Progress: {`${score}/${characters.length}`}
+          Progress: {`${progress}/${characters.length}`}
+          <br />
+          Correct: <span className="correct">{correct}</span> - Incorrect:{" "}
+          <span className="incorrect">{incorrect}</span>
         </div>
 
         <div className="character__actions">

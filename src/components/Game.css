@@ -28,6 +28,12 @@
 .character__score {
   margin-top: 7rem;
 }
+.correct {
+  color: green;
+}
+.incorrect {
+  color: red;
+}
 
 .character__actions {
   display: flex;

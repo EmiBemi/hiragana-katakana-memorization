@@ -1,18 +1,36 @@
+import React from "react";
 import { shuffle } from "../utils/shuffle";
 import { Game } from "../components/Game";
 import { BackNavigation } from "../components/BackNavigation";
+import "./Hiragana.css";
 
 export const Hiragana = () => {
+  const [disableDiagraphs, setDisableDiagraphs] = React.useState(false);
+
+  const sortedHiraganaDiagraphs = disableDiagraphs ? [] : hiraganaDiagraphs;
+
+  const hiraganaArray = [...hiragana, ...sortedHiraganaDiagraphs];
+
   const shuffleHiragana = shuffle(hiraganaArray);
+
   return (
     <>
       <BackNavigation />
+      <div className="checkbox-inputs">
+        <input
+          type="checkbox"
+          id="disableDiagraphs"
+          checked={disableDiagraphs}
+          onChange={(e) => setDisableDiagraphs(e.target.checked)}
+        />
+        <label htmlFor="disableDiagraphs">Disable diagraphs</label>
+      </div>
       <Game characters={shuffleHiragana} />
     </>
   );
 };
 
-const hiraganaArray = [
+const hiragana = [
   { label: "あ", value: "a" },
   { label: "い", value: "i" },
   { label: "う", value: "u" },
@@ -84,6 +102,9 @@ const hiraganaArray = [
   { label: "ぷ", value: "pu" },
   { label: "ぺ", value: "pe" },
   { label: "ぽ", value: "po" },
+];
+
+const hiraganaDiagraphs = [
   { label: "きゃ", value: "kya" },
   { label: "きゅ", value: "kyu" },
   { label: "きょ", value: "kyo" },
