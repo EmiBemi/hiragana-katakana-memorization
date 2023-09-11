@@ -1,18 +1,25 @@
-import { BackNavigation } from "../components/BackNavigation";
 import { Game } from "../components/Game";
 import { shuffle } from "../utils/shuffle";
+import { TopBar } from "../components/TopBar";
+import { useCharacter } from "./CharacterProvider";
 
 export const Katakana = () => {
+  const { disableDiagraphs } = useCharacter();
+
+  const sortedKatakanaDiagraphs = disableDiagraphs ? [] : katakanaDiagraphs;
+
+  const katakanaArray = [...katakana, ...sortedKatakanaDiagraphs];
+
   const shuffleKatakana = shuffle(katakanaArray);
+
   return (
-    <>
-      <BackNavigation />
-      <Game characters={shuffleKatakana} />;
-    </>
+    <TopBar>
+      <Game characters={shuffleKatakana} />
+    </TopBar>
   );
 };
 
-const katakanaArray = [
+const katakana = [
   { label: "ア", value: "a" },
   { label: "イ", value: "i" },
   { label: "ウ", value: "u" },
@@ -84,6 +91,9 @@ const katakanaArray = [
   { label: "プ", value: "pu" },
   { label: "ペ", value: "pe" },
   { label: "ポ", value: "po" },
+];
+
+const katakanaDiagraphs = [
   { label: "キャ", value: "kya" },
   { label: "キュ", value: "kyu" },
   { label: "キョ", value: "kyo" },

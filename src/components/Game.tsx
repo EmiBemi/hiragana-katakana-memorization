@@ -4,7 +4,6 @@ import "./Game.css";
 /**
  * TODO:
  * - Speedrun mode
- * - Disable diagraphs
  * */
 
 interface GameProps {

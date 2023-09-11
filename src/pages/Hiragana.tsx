@@ -1,11 +1,10 @@
-import React from "react";
 import { shuffle } from "../utils/shuffle";
 import { Game } from "../components/Game";
-import { BackNavigation } from "../components/BackNavigation";
-import "./Hiragana.css";
+import { TopBar } from "../components/TopBar";
+import { useCharacter } from "./CharacterProvider";
 
 export const Hiragana = () => {
-  const [disableDiagraphs, setDisableDiagraphs] = React.useState(false);
+  const { disableDiagraphs } = useCharacter();
 
   const sortedHiraganaDiagraphs = disableDiagraphs ? [] : hiraganaDiagraphs;
 
@@ -14,19 +13,9 @@ export const Hiragana = () => {
   const shuffleHiragana = shuffle(hiraganaArray);
 
   return (
-    <>
-      <BackNavigation />
-      <div className="checkbox-inputs">
-        <input
-          type="checkbox"
-          id="disableDiagraphs"
-          checked={disableDiagraphs}
-          onChange={(e) => setDisableDiagraphs(e.target.checked)}
-        />
-        <label htmlFor="disableDiagraphs">Disable diagraphs</label>
-      </div>
+    <TopBar>
       <Game characters={shuffleHiragana} />
-    </>
+    </TopBar>
   );
 };
 

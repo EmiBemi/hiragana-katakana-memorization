@@ -1,3 +1,9 @@
+.back-navigation {
+  position: absolute;
+  left: 1rem;
+  top: 1rem;
+}
+
 .checkbox-inputs {
   position: absolute;
   right: 1rem;
